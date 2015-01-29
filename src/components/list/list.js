@@ -75,13 +75,44 @@ function mdListDirective() {
  * </hljs>
  *
  */
-function mdItemDirective() {
+function mdItemDirective($document, $log) {
+  var proxiedTypes = ['md-checkbox', 'md-switch'];
   return {
     restrict: 'E',
-    link: function($scope, $element, $attr) {
-      $element.attr({
-        'role' : 'listitem'
-      });
+    compile: function(tEl, tAttrs) {
+      if (tAttrs.ngClick) {
+        // Check for proxy controls and warn 
+        for (var i = 0, type; type = proxiedTypes[i]; ++i) {
+          if (tEl[0].querySelector(type)) {
+            $log.warn('dont use ng-click on md-item\'s with controls in them');
+            return postLink;
+          }
+        }
+        var containerButton = angular.element('<button class="md-no-style">');
+        tEl.append(containerButton.append(tEl.contents()));
+      }
+      return postLink;
+
+      function postLink($scope, $element, $attr) {
+        $element.attr({
+          'role' : 'listitem'
+        });
+
+        var proxies = [];
+        angular.forEach(proxiedTypes, function(type) {
+          angular.forEach($element[0].querySelectorAll(type), function(child) {
+            proxies.push(child);
+          });
+        });
+        if (proxies.length) { $element.addClass('md-clickable'); }
+        $element.on('click', function(e) {
+          angular.forEach(proxies, function(proxy) {
+            if (e.target !== proxy && !proxy.contains(e.target)) {
+              angular.element(proxy).triggerHandler('click');
+            }
+          });
+        });
+      }
     }
   };
 }

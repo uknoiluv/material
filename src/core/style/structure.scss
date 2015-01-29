@@ -49,6 +49,14 @@ html, body {
   }
 }
 
+button.md-no-style {
+  background-color: inherit;
+  text-align: left;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
+
 button,
 select,
 html,

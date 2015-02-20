@@ -86,6 +86,16 @@ function MdButtonDirective($mdInkRipple, $mdTheming, $mdAria) {
         element.attr('tabindex', isDisabled ? -1 : 0);
       });
     }
+
+    // restrict focus styles to the keyboard
+    scope.mouseActive = false;
+    element
+      .on('mouseover', function() { scope.mouseActive = true; })
+      .on('mouseout', function() { scope.mouseActive = false; })
+      .on('focus', function() {
+        if(scope.mouseActive === false) element.addClass('focus');
+      })
+      .on('blur', function() { element.removeClass('focus'); });
   }
 
 }

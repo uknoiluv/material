@@ -10,7 +10,7 @@ md-toolbar .md-button.md-THEME_NAME-theme.md-fab {
 
   &:not([disabled]) {
     &:hover, 
-    &:focus {
+    &.focus {
       background-color: '{{background-500-0.2}}';
     }
   }
@@ -23,7 +23,7 @@ md-toolbar .md-button.md-THEME_NAME-theme.md-fab {
       background-color: '{{primary-color}}';
       &:not([disabled]) {
         &:hover, 
-        &:focus {
+        &.focus {
           background-color: '{{primary-600}}';
         }
       }
@@ -36,7 +36,7 @@ md-toolbar .md-button.md-THEME_NAME-theme.md-fab {
     color: '{{accent-contrast}}';
     &:not([disabled]) {
       &:hover, 
-      &:focus {
+      &.focus {
         background-color: '{{accent-A700}}';
       }
     }
@@ -47,7 +47,7 @@ md-toolbar .md-button.md-THEME_NAME-theme.md-fab {
     background-color: '{{background-50}}';
     &:not([disabled]) {
       &:hover, 
-      &:focus {
+      &.focus {
         background-color: '{{background-200}}';
       }
     }
@@ -62,7 +62,7 @@ md-toolbar .md-button.md-THEME_NAME-theme.md-fab {
       background-color: '{{warn-color}}';
       &:not([disabled]) {
         &:hover, 
-        &:focus {
+        &.focus {
           background-color: '{{warn-700}}';
         }
       }
@@ -78,7 +78,7 @@ md-toolbar .md-button.md-THEME_NAME-theme.md-fab {
       background-color: '{{accent-color}}';
       &:not([disabled]) {
         &:hover, 
-        &:focus {
+        &.focus {
           background-color: '{{accent-700}}';
         }
       }
